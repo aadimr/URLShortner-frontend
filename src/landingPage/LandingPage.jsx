@@ -10,7 +10,7 @@ function LandingPage() {
             </p>
             <div className={"flex gap-4 justify-center"}>
                 <Link to="/singUp"><Button name={"SingUp"} className={"border-none w-[7rem] h-[2.5rem] font-medium text-lg bg-[#BA3B0A] text-white"} /></Link>
-                <Button name={"LogIn"} className={"border border-[#BA3B0A] w-[7rem] h-[2.5rem] font-medium text-lg text-[#BA3B0A]"} />
+                <Link to="/logIn"><Button name={"LogIn"} className={"border border-[#BA3B0A] w-[7rem] h-[2.5rem] font-medium text-lg text-[#BA3B0A]"} /></Link>
             </div>
         </div>
     )
