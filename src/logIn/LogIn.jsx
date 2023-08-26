@@ -29,7 +29,7 @@ function LogIn() {
                     const authDataString = JSON.parse(localStorage.getItem('auth'));
                     dispatch(getloggedInUserDetails(authDataString.token));
                     action.resetForm();
-                    navigate("/home");
+                    navigate("/");
                 }
             } catch (error) {
                 console.log(error)

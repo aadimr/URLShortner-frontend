@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import MenuItem from '@mui/material/MenuItem';
-import { Link,useNavigate  } from "react-router-dom";
-import LogOut from "../../logOut/LogOut";
+import { Link,useNavigate } from "react-router-dom";
 import { Divider } from "@mui/material";
 import { useSelector } from "react-redux";
 import ClickAwayListener from '@mui/material/ClickAwayListener';
@@ -61,12 +60,12 @@ function ProfileDropdown() {
                 aria-expanded={open ? 'true' : undefined}
                 aria-haspopup="true"
                 onClick={handleToggle}
-                className='text-[#E8772E] cursor-pointer flex gap-[1rem]'
+                className='text-[#E8772E] h-14 cursor-pointer flex gap-[1rem]'
             >
                 <span
-                    className='w-[3.5rem] bg-[#E8772E] text-white pb-[.5rem] rounded-full flex justify-center'>{UserDetail[0].data.fullName[0]}
+                    className='w-[3.5rem] bg-[#E8772E] text-[1.5rem] text-white rounded-full flex justify-center items-center'>{UserDetail[0].data.fullName[0]}
                 </span>
-                <span className='pb-[.5rem]'>{UserDetail[0].data.fullName}</span>
+                <span className='text-[1.5rem] flex items-center'>{UserDetail[0].data.fullName}</span>
             </div>
             <Popper
                 open={open}
@@ -88,7 +87,7 @@ function ProfileDropdown() {
                                     aria-labelledby="composition-button"
                                     onKeyDown={handleListKeyDown}
                                 >
-                                    <MenuItem onClick={handleClose} className="h-[3rem] !text-[1.5rem]">{UserDetail[0].data.fullName}</MenuItem>
+                                    <Link to={"/"}><MenuItem onClick={handleClose} className="h-[3rem] !text-[1.5rem]">{UserDetail[0].data.fullName}</MenuItem></Link>
                                     <Divider/>
                                     <MenuItem onClick={handleClose} className="h-[3rem]">My Shortened URLs</MenuItem>
                                     <Divider/>

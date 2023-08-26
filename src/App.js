@@ -15,11 +15,11 @@ function App() {
       <ShowAndHide>
       <Header/>
       </ShowAndHide>
-      {/* <LandingPage/> */}
+      <LandingPage/>
       <Routes>
         <Route path='/signUp' element={<SignUP/>}/>
         <Route path='/logIn' element={<LogIn/>}/>
-        <Route path='/home'  element={<Home/>}/>
+        <Route path='/'  element={<Home/>}/>
       </Routes>
       <ShowAndHide>
       <Footer/>
