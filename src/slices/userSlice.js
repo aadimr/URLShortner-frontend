@@ -69,43 +69,26 @@ export const getloggedInUserDetails = createAsyncThunk(
 export const UsersDetail = createSlice({
     name: "User",
     initialState: {
-        users: [],
-        UserDetail: [],
+        UserDetail: "",
         loading: false,
         error: null,
     },
 
+    // reducers: {
+    //     resetUserState: (state) => {
+    //       state.resetUsers = [];
+    //     },
+    //   },
+
     extraReducers: (builder) => {
         builder
-            .addCase(createUser.pending, (state) => {
-                state.loading = true;
-            })
-            .addCase(createUser.fulfilled, (state, action) => {
-                state.loading = false;
-                state.users.push(action.payload);
-            })
-            .addCase(createUser.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error;
-            })
-            .addCase(logInUser.pending, (state) => {
-                state.loading = true;
-            })
-            .addCase(logInUser.fulfilled, (state, action) => {
-                state.loading = false;
-                state.users.push(action.payload);
-            })
-            .addCase(logInUser.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error;
-            })
             .addCase(getloggedInUserDetails.pending, (state) => {
                 state.loading = true;
             })
             .addCase(getloggedInUserDetails.fulfilled, (state, action) => {
                 state.loading = false;
                 console.log(action.payload)
-                state.UserDetail.push(action.payload);
+                state.UserDetail = action.payload;
             })
             .addCase(getloggedInUserDetails.rejected, (state, action) => {
                 state.loading = false;

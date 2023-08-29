@@ -4,9 +4,9 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import { createUser } from "../slices/userSlice"
 import { userSignUpSchema } from "./signUpValidation";
 import { useFormik } from "formik";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
-import { debounce } from 'lodash';
+import { useState } from "react";
 
 const initialValues = {
     fullName: "",
@@ -16,6 +16,18 @@ const initialValues = {
 }
 
 function SignUP() {
+
+    const [showAndHidePass, setShowAndHidePass] = useState(false)
+    const [showAndHideConfPass, setShowAndHideConfPass] = useState(false)
+
+    function showAndHidePswd() {
+        setShowAndHidePass(!showAndHidePass)
+    }
+
+    function showAndHideConfPswd() {
+        setShowAndHideConfPass(!showAndHideConfPass)
+    }
+
     const navigate = useNavigate()
 
     const dispatch = useDispatch()
@@ -27,18 +39,18 @@ function SignUP() {
             try {
                 const response = await dispatch(createUser(values)).unwrap();
                 if (response.message === "user registered successfully") {
-                  action.resetForm();
-                  navigate("/logIn");
+                    action.resetForm();
+                    navigate("/logIn");
                 }
-              } catch (error) {
+            } catch (error) {
                 console.log(error)
                 if (error && error.message) {
-                  setFieldError("emailId", error.message);
+                    setFieldError("emailId", error.message);
                 }
+            }
         }
-    }
     })
-    
+
     console.log(values)
 
     return (
@@ -63,17 +75,17 @@ function SignUP() {
                 <div className="w-5/6 sm:w-fit mb-[18px]">
                     <div className="flex justify-between">
                         <label className="text-[#6c6d71]">Password:</label>
-                        <span className="text-[#0352d0]"><VisibilityIcon className="text-[#0352d0]" /> show</span>
+                        <span className="text-[#0352d0] cursor-pointer" onClick={showAndHidePswd}><VisibilityIcon className="text-[#0352d0]" /> {showAndHidePass ? "Hide" : "Show"}</span>
                     </div>
-                    <Input type={"password"} placeholder={"Enter your password"} name={"password"} value={values.password} onChange={handleChange} className="border border-[#d3d4d7] sm:w-[28rem] w-full px-[11px] py-[10px] rounded-[3px]" />
+                    <Input type={showAndHidePass ? "text" : "password"} placeholder={"Enter your password"} name={"password"} value={values.password} onChange={handleChange} className="border border-[#d3d4d7] sm:w-[28rem] w-full px-[11px] py-[10px] rounded-[3px]" />
                     {errors.password && touched.password ? <p className="text-[#FF0000] sm:w-[28rem] w-full">*{errors.password}</p> : null}
                 </div>
                 <div className="w-5/6 sm:w-fit mb-[18px]">
                     <div className="flex justify-between">
                         <label className="text-[#6c6d71]">Confirm Password:</label>
-                        <span className="text-[#0352d0]"><VisibilityIcon className="text-[#0352d0]" /> show</span>
+                        <span className="text-[#0352d0] cursor-pointer" onClick={showAndHideConfPswd}><VisibilityIcon className="text-[#0352d0]" /> {showAndHideConfPass ? "Hide" : "Show"}</span>
                     </div>
-                    <Input type={"password"} placeholder={"Enter your confirm password"} name={"confirmPassword"} value={values.confirmPassword} onChange={handleChange} className="border border-[#d3d4d7] sm:w-[28rem] w-full px-[11px] py-[10px] rounded-[3px]" />
+                    <Input type={showAndHideConfPass ? "text" : "password"} placeholder={"Enter your confirm password"} name={"confirmPassword"} value={values.confirmPassword} onChange={handleChange} className="border border-[#d3d4d7] sm:w-[28rem] w-full px-[11px] py-[10px] rounded-[3px]" />
                     {errors.confirmPassword && touched.confirmPassword ? <p className="text-[#FF0000] sm:w-[28rem] w-full">*{errors.confirmPassword}</p> : null}
                 </div>
                 <div className="w-5/6 sm:w-fit">

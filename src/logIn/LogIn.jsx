@@ -1,11 +1,12 @@
 import Input from "../components/input/Input";
 import Button from "../components/button/Button";
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { logInUser,getloggedInUserDetails } from "../slices/userSlice";
+import { logInUser, getloggedInUserDetails } from "../slices/userSlice";
 import { userLogInSchema } from "./logInValidation";
 import { useFormik } from "formik";
-import { Link,useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
+import { useState } from "react";
 
 const initialValues = {
     emailId: "",
@@ -13,6 +14,12 @@ const initialValues = {
 }
 
 function LogIn() {
+
+    const [showAndHide, setShowAndHide] = useState(false)
+
+    function showAndHidePswd() {
+        setShowAndHide(!showAndHide)
+    }
 
     const navigate = useNavigate()
 
@@ -25,7 +32,7 @@ function LogIn() {
             try {
                 const response = await dispatch(logInUser(values)).unwrap();
                 if (response.status === true) {
-                    localStorage.setItem('auth', JSON.stringify({token:response.data.token}))
+                    localStorage.setItem('auth', JSON.stringify({ token: response.data.token }))
                     const authDataString = JSON.parse(localStorage.getItem('auth'));
                     dispatch(getloggedInUserDetails(authDataString.token));
                     action.resetForm();
@@ -57,9 +64,9 @@ function LogIn() {
                 <div className="w-5/6 sm:w-fit mb-[18px]">
                     <div className="flex justify-between">
                         <label className="text-[#6c6d71]">Password:</label>
-                        <span className="text-[#0352d0]"><VisibilityIcon className="text-[#0352d0]" /> show</span>
+                        <span className="text-[#0352d0] cursor-pointer" onClick={showAndHidePswd}><VisibilityIcon className="text-[#0352d0]" /> {showAndHide ? "Hide" : "Show"}</span>
                     </div>
-                    <Input type={"password"} placeholder={"Enter your password"} name={"password"} value={values.password} onChange={handleChange} onBlur={handleBlur} className="border border-[#d3d4d7] sm:w-[28rem] w-full px-[11px] py-[10px] rounded-[3px]" />
+                    <Input type={showAndHide ? "text" : "password"} placeholder={"Enter your password"} name={"password"} value={values.password} onChange={handleChange} onBlur={handleBlur} className="border border-[#d3d4d7] sm:w-[28rem] w-full px-[11px] py-[10px] rounded-[3px]" />
                     {errors.password && touched.password ? <p className="text-[#FF0000]">*{errors.password}</p> : null}
                 </div>
                 <div className="w-5/6 sm:w-fit">

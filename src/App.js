@@ -1,5 +1,4 @@
 import './App.css';
-import LandingPage from './landingPage/LandingPage';
 import Header from './header/Header';
 import SignUP from './signUp/SignUp';
 import LogIn from './logIn/LogIn';
@@ -15,7 +14,6 @@ function App() {
       <ShowAndHide>
       <Header/>
       </ShowAndHide>
-      <LandingPage/>
       <Routes>
         <Route path='/signUp' element={<SignUP/>}/>
         <Route path='/logIn' element={<LogIn/>}/>
