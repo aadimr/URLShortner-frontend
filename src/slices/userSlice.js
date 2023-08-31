@@ -57,10 +57,8 @@ export const getloggedInUserDetails = createAsyncThunk(
                     }
                 }
             );
-            console.log(response.data)
             return response.data
         } catch (error) {
-            console.log(error.response)
             return rejectWithValue(error.response);
         }
     }
@@ -69,16 +67,10 @@ export const getloggedInUserDetails = createAsyncThunk(
 export const UsersDetail = createSlice({
     name: "User",
     initialState: {
-        UserDetail: "",
+        UserDetail: "", 
         loading: false,
         error: null,
     },
-
-    // reducers: {
-    //     resetUserState: (state) => {
-    //       state.resetUsers = [];
-    //     },
-    //   },
 
     extraReducers: (builder) => {
         builder
@@ -87,7 +79,6 @@ export const UsersDetail = createSlice({
             })
             .addCase(getloggedInUserDetails.fulfilled, (state, action) => {
                 state.loading = false;
-                console.log(action.payload)
                 state.UserDetail = action.payload;
             })
             .addCase(getloggedInUserDetails.rejected, (state, action) => {

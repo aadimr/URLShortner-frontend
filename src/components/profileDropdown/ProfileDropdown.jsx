@@ -2,8 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import MenuItem from '@mui/material/MenuItem';
 import { Link, useNavigate } from "react-router-dom";
 import { Divider } from "@mui/material";
-import { useSelector, useDispatch } from "react-redux";
-import { getloggedInUserDetails } from "../../slices/userSlice";
+import { useSelector } from "react-redux";
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Grow from '@mui/material/Grow';
 import Paper from '@mui/material/Paper';
@@ -13,8 +12,6 @@ import MenuList from '@mui/material/MenuList';
 function ProfileDropdown() {
 
     const navigate = useNavigate()
-    const dispatch = useDispatch()
-
     const [open, setOpen] = useState(false);
     const anchorRef = useRef(null);
 
@@ -51,6 +48,7 @@ function ProfileDropdown() {
 
     function handleClickLogOut() {
         localStorage.clear()
+        localStorage.removeItem("persist:URLShoternedByLoggedInUser")
         navigate("/logIn")
     }
 
@@ -74,7 +72,6 @@ function ProfileDropdown() {
                 anchorEl={anchorRef.current}
                 role={undefined}
                 transition
-                disablePortal
                 className="w-[18rem]"
             >
                 {({ TransitionProps }) => (
@@ -91,8 +88,8 @@ function ProfileDropdown() {
                                 >
                                     <Link to={"/"}><MenuItem onClick={handleClose} className="h-[3rem] !text-[1.2rem]">{UserDetail.data.fullName}</MenuItem></Link>
                                     <Divider />
-                                    <MenuItem onClick={handleClose} className="">My Shortened URLs</MenuItem>
-                                    <MenuItem onClick={handleClickLogOut} className="">Logout</MenuItem>
+                                    <Link to={"/allShortenedURL"}><MenuItem onClick={handleClose}>My Shortened URLs</MenuItem></Link>
+                                    <MenuItem onClick={handleClickLogOut}>Logout</MenuItem>
                                 </MenuList>
                             </ClickAwayListener>
                         </Paper>

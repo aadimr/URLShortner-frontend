@@ -4,7 +4,7 @@ import { useLocation } from "react-router-dom";
 function ShowAndHide({children}) {
 
   const location = useLocation()
-  const [showHeaderAndFooter, setShowHeaderAndFooter] = useState(false)
+  const [showHeaderAndFooter, setShowHeaderAndFooter] = useState(true)
 
   useEffect(() => {
     if(location.pathname === "/signUp" || location.pathname === "/logIn"){

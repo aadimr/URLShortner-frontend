@@ -7,7 +7,28 @@ export const shortURL = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                'http://localhost:3000/users',
+                'http://localhost:3000/shortenUrl',
+                data,
+                {
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+            );
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response.data);
+        }
+    }
+);
+
+// getAllShortenedUrlsOfLoggedInUser action
+export const getAllShortenedUrlsOfLoggedInUser = createAsyncThunk(
+    'getAllShortenedUrlsOfLoggedInUser',
+    async (data, { rejectWithValue }) => {
+        try {
+            const response = await axios.get(
+                `http://localhost:3000/user/${data}`,
                 data,
                 {
                     headers: {
@@ -23,23 +44,35 @@ export const shortURL = createAsyncThunk(
 );
 
 export const URLDetails = createSlice({
-    name: "User",
+    name: "URL",
     initialState: {
-        URLs: [],
+        // URLs: "",
+        allURLs: "",
         loading: false,
         error: null,
     },
 
     extraReducers: (builder) => {
         builder
-            .addCase(shortURL.pending, (state) => {
+            // .addCase(shortURL.pending, (state) => {
+            //     state.loading = true;
+            // })
+            // .addCase(shortURL.fulfilled, (state, action) => {
+            //     state.loading = false;
+            //     state.URLs = action.payload;
+            // })
+            // .addCase(shortURL.rejected, (state, action) => {
+            //     state.loading = false;
+            //     state.error = action.error;
+            // })
+            .addCase(getAllShortenedUrlsOfLoggedInUser.pending, (state) => {
                 state.loading = true;
             })
-            .addCase(shortURL.fulfilled, (state, action) => {
+            .addCase(getAllShortenedUrlsOfLoggedInUser.fulfilled, (state, action) => {
                 state.loading = false;
-                state.URLs.push(action.payload);
+                state.allURLs = action.payload;
             })
-            .addCase(shortURL.rejected, (state, action) => {
+            .addCase(getAllShortenedUrlsOfLoggedInUser.rejected, (state, action) => {
                 state.loading = false;
                 state.error = action.error;
             })
