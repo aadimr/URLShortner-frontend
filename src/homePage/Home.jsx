@@ -1,7 +1,7 @@
 import Input from "../components/input/Input";
 import { useFormik } from "formik";
-import { useDispatch, useSelector } from 'react-redux';
-import { shortURL,getAllShortenedUrlsOfLoggedInUser } from "../slices/URLSlice";
+import { useDispatch } from 'react-redux';
+import { shortURL } from "../slices/URLSlice";
 import { URLSchema } from "./URLSchema.js";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
@@ -10,10 +10,10 @@ function Home() {
 
     let navigate = useNavigate()
 
-    let { UserDetail } = useSelector(state => state.user)
+    const userDetail = JSON.parse(localStorage.getItem('loggedInUserDetail'));
 
     const initialValues = {
-        userId: UserDetail.data._id,
+        userId: userDetail && userDetail.details.userId,
         urlCode: "",
         longUrl: "",
         shortUrl: "",
@@ -29,7 +29,6 @@ function Home() {
             try {
                 const response = await dispatch(shortURL(values)).unwrap();
                 if (response.status === true) {
-                    await dispatch(getAllShortenedUrlsOfLoggedInUser(UserDetail.data._id));
                     navigate("/allShortenedURL")
                 }
             } catch (error) {
@@ -56,7 +55,7 @@ function Home() {
     }, []);
 
     return (
-        <div className="flex flex-col items-center min-h-screen pt-[100px]">
+        <div className="flex flex-col items-center min-h-screen pt-[10rem]">
             <p className="font-bold text-[2rem] text-[#4f565a] mb-[40px] md:w-[40rem] w-5/6">Create new</p>
             <form className="flex flex-col items-center w-full md:w-auto" onSubmit={handleSubmit}>
                 <div className="w-5/6 flex flex-col justify-center md:w-fit">

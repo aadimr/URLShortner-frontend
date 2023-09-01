@@ -43,49 +43,20 @@ export const logInUser = createAsyncThunk(
     }
 );
 
-// getloggedInUserDetails action
-export const getloggedInUserDetails = createAsyncThunk(
-    'getloggedInUserDetails',
-    async (data, { rejectWithValue }) => {
-        try {
-            const response = await axios.post(
-                'http://localhost:3000/getUsers',
-                data,
-                {
-                    headers: {
-                        "auth-token":data
-                    }
-                }
-            );
-            return response.data
-        } catch (error) {
-            return rejectWithValue(error.response);
-        }
-    }
-);
+// export const UsersDetail = createSlice({
+//     name: "User",
+//     initialState: {
+//         UserDetail: "",
+//         loading: false,
+//         error: null,
+//     },
+//     reducers: {
+//         getLoggedInUserDetail: (state, action) => {
+//           state.UserDetail = action.payload
+//         },
+//       },
+// });
 
-export const UsersDetail = createSlice({
-    name: "User",
-    initialState: {
-        UserDetail: "", 
-        loading: false,
-        error: null,
-    },
+// export const { getLoggedInUserDetail } = UsersDetail.actions;
 
-    extraReducers: (builder) => {
-        builder
-            .addCase(getloggedInUserDetails.pending, (state) => {
-                state.loading = true;
-            })
-            .addCase(getloggedInUserDetails.fulfilled, (state, action) => {
-                state.loading = false;
-                state.UserDetail = action.payload;
-            })
-            .addCase(getloggedInUserDetails.rejected, (state, action) => {
-                state.loading = false;
-                state.error = action.error;
-            })
-    }
-});
-
-export default UsersDetail.reducer;
+// export default UsersDetail.reducer;

@@ -3,7 +3,7 @@ import { Outlet, Navigate } from 'react-router-dom'
 const PrivateRoutes = () => {
     let isLoggedIn = JSON.parse(localStorage.getItem("auth"))
     return(
-        isLoggedIn ? <Outlet/> : <Navigate to="/login"/>
+        !isLoggedIn ? <Navigate to="/login"/> : <Outlet/>
     )
 }
 

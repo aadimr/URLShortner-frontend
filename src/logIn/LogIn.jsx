@@ -1,13 +1,13 @@
 import Input from "../components/input/Input";
 import Button from "../components/button/Button";
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import { logInUser, getloggedInUserDetails } from "../slices/userSlice";
-import { getAllShortenedUrlsOfLoggedInUser } from "../slices/URLSlice";
+import { logInUser } from "../slices/userSlice";
 import { userLogInSchema } from "./logInValidation";
 import { useFormik } from "formik";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from 'react-redux';
-import { useState, useEffect } from "react";
+import { useDispatch } from 'react-redux';
+import { useState } from "react";
+import jwtDecode from "jwt-decode";
 
 const initialValues = {
     emailId: "",
@@ -26,8 +26,6 @@ function LogIn() {
 
     const dispatch = useDispatch()
 
-    const { UserDetail } = useSelector(state => state.user)
-
     const { values, handleBlur, errors, handleChange, touched, handleSubmit, setFieldError } = useFormik({
         initialValues: initialValues,
         validationSchema: userLogInSchema,
@@ -36,8 +34,9 @@ function LogIn() {
                 const response = await dispatch(logInUser(values)).unwrap();
                 if (response.status === true) {
                     localStorage.setItem('auth', JSON.stringify({ token: response.data.token }))
-                    const authDataString = JSON.parse(localStorage.getItem('auth'));
-                    await dispatch(getloggedInUserDetails(authDataString.token))
+                    const JWTtoken = JSON.parse(localStorage.getItem('auth'));
+                    const decoded = jwtDecode(JWTtoken.token)
+                    localStorage.setItem("loggedInUserDetail", JSON.stringify({details: decoded}))
                     action.resetForm();
                     navigate("/");
                 }
@@ -49,14 +48,6 @@ function LogIn() {
             }
         }
     })
-
-    const getAllShortenedUrls = async () => {
-        await dispatch(getAllShortenedUrlsOfLoggedInUser(UserDetail && UserDetail.data._id));
-    };
-
-    useEffect(() => {
-        getAllShortenedUrls();
-    },[UserDetail]);
 
     return (
         <div className="flex flex-col items-center justify-center">

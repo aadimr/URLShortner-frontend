@@ -46,7 +46,6 @@ export const getAllShortenedUrlsOfLoggedInUser = createAsyncThunk(
 export const URLDetails = createSlice({
     name: "URL",
     initialState: {
-        // URLs: "",
         allURLs: "",
         loading: false,
         error: null,

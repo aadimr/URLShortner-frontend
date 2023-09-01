@@ -54,7 +54,7 @@ function SignUP() {
     console.log(values)
 
     return (
-        <div className="flex flex-col items-center justify-center">
+        <div className="flex flex-col items-center justify-center min-h-screen">
             <div className="border-b-2 border-[#e8e9eb] mb-[50px] w-[85%] sm:pt-[12px]">
                 <img src={process.env.PUBLIC_URL + "/linkswift.png"} alt="error" className="w-1/3 h-16 sm:w-1/6" />
             </div>
