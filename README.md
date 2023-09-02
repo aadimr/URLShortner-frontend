@@ -1,5 +1,5 @@
 # Project Title
-LinkSwift (A website to short your long URLs)
+LinkSwift (A website to shortened your long URLs)
 
 ## Description
 1. When user will enter to the website they will be able to see the logIn page if they are already registered then they can logIn by providing their registered email and password if 
