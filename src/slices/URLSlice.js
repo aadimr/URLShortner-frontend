@@ -53,17 +53,6 @@ export const URLDetails = createSlice({
 
     extraReducers: (builder) => {
         builder
-            // .addCase(shortURL.pending, (state) => {
-            //     state.loading = true;
-            // })
-            // .addCase(shortURL.fulfilled, (state, action) => {
-            //     state.loading = false;
-            //     state.URLs = action.payload;
-            // })
-            // .addCase(shortURL.rejected, (state, action) => {
-            //     state.loading = false;
-            //     state.error = action.error;
-            // })
             .addCase(getAllShortenedUrlsOfLoggedInUser.pending, (state) => {
                 state.loading = true;
             })

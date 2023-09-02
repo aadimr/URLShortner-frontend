@@ -43,15 +43,12 @@ function SignUP() {
                     navigate("/logIn");
                 }
             } catch (error) {
-                console.log(error)
                 if (error && error.message) {
                     setFieldError("emailId", error.message);
                 }
             }
         }
     })
-
-    console.log(values)
 
     return (
         <div className="flex flex-col items-center justify-center min-h-screen">

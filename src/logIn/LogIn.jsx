@@ -41,7 +41,6 @@ function LogIn() {
                     navigate("/");
                 }
             } catch (error) {
-                console.log(error)
                 if (error && error.message) {
                     setFieldError("password", "Email or Password is wrong");
                 }

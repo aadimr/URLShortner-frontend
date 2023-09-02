@@ -1,4 +1,4 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios';
 
 // create action
@@ -42,21 +42,3 @@ export const logInUser = createAsyncThunk(
         }
     }
 );
-
-// export const UsersDetail = createSlice({
-//     name: "User",
-//     initialState: {
-//         UserDetail: "",
-//         loading: false,
-//         error: null,
-//     },
-//     reducers: {
-//         getLoggedInUserDetail: (state, action) => {
-//           state.UserDetail = action.payload
-//         },
-//       },
-// });
-
-// export const { getLoggedInUserDetail } = UsersDetail.actions;
-
-// export default UsersDetail.reducer;

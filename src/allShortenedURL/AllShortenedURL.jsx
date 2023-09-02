@@ -4,6 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getAllShortenedUrlsOfLoggedInUser } from '../slices/URLSlice';
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 function AllShortenedURL() {
 
@@ -27,6 +29,8 @@ function AllShortenedURL() {
     }, [dispatch]);
 
     return (
+        <>
+        <Header/>
         <div className="flex flex-col items-center w-full min-h-screen pt-[6rem]">
             {allShortedURLS.length !== 0 && recentShortedUrl ?
                 <>
@@ -62,6 +66,8 @@ function AllShortenedURL() {
                     </div>
                 </> : <p className='text-[#6c6d71] text-[1.5rem] font-semibold flex justify-center items-center mt-[15rem]'>Empty</p>}
         </div>
+        <Footer/>
+        </>
     )
 }
 

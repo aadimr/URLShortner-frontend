@@ -5,6 +5,8 @@ import { shortURL } from "../slices/URLSlice";
 import { URLSchema } from "./URLSchema.js";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Header from "../header/Header";
+import Footer from "../footer/Footer";
 
 function Home() {
 
@@ -55,19 +57,23 @@ function Home() {
     }, []);
 
     return (
-        <div className="flex flex-col items-center min-h-screen pt-[10rem]">
-            <p className="font-bold text-[2rem] text-[#4f565a] mb-[40px] md:w-[40rem] w-5/6">Create new</p>
-            <form className="flex flex-col items-center w-full md:w-auto" onSubmit={handleSubmit}>
-                <div className="w-5/6 flex flex-col justify-center md:w-fit">
-                    <label className="text-[#6c6d71] w-5/6 mb-[.8rem] font-semibold">Destination</label>
-                    <Input placeholder={"https://example.com/my-long-url"}
-                        name={"longUrl"} value={values.longUrl} onChange={handleChange} onBlur={handleBlur}
-                        className="border border-[#d3d4d7] md:w-[40rem] w-full px-[11px] py-[10px] rounded-[3px]" />
-                    <p>Hit <span className="font-medium">ENTER</span> to quick create</p>
-                    {errors.longUrl && touched.longUrl ? <p className="text-[#FF0000]">*{errors.longUrl}</p> : null}
-                </div>
-            </form>
-        </div>
+        <>
+            <Header />
+            <div className="flex flex-col items-center min-h-screen pt-[10rem]">
+                <p className="font-bold text-[2rem] text-[#4f565a] mb-[40px] md:w-[40rem] w-5/6">Create new</p>
+                <form className="flex flex-col items-center w-full md:w-auto" onSubmit={handleSubmit}>
+                    <div className="w-5/6 flex flex-col justify-center md:w-fit">
+                        <label className="text-[#6c6d71] w-5/6 mb-[.8rem] font-semibold">Destination</label>
+                        <Input placeholder={"https://example.com/my-long-url"}
+                            name={"longUrl"} value={values.longUrl} onChange={handleChange} onBlur={handleBlur}
+                            className="border border-[#d3d4d7] md:w-[40rem] w-full px-[11px] py-[10px] rounded-[3px]" />
+                        <p>Hit <span className="font-medium">ENTER</span> to quick create</p>
+                        {errors.longUrl && touched.longUrl ? <p className="text-[#FF0000]">*{errors.longUrl}</p> : null}
+                    </div>
+                </form>
+            </div>
+            <Footer />
+        </>
     )
 }
 
