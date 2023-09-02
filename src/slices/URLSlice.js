@@ -7,7 +7,7 @@ export const shortURL = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                'http://localhost:3000/shortenUrl',
+                'https://linkswift-endb.onrender.com/shortenUrl',
                 data,
                 {
                     headers: {
@@ -28,7 +28,7 @@ export const getAllShortenedUrlsOfLoggedInUser = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const response = await axios.get(
-                `http://localhost:3000/user/${data}`,
+                `https://linkswift-endb.onrender.com/user/${data}`,
                 data,
                 {
                     headers: {

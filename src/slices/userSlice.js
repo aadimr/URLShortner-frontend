@@ -7,7 +7,7 @@ export const createUser = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                'http://localhost:3000/users',
+                'https://linkswift-endb.onrender.com/users',
                 data,
                 {
                     headers: {
@@ -28,7 +28,7 @@ export const logInUser = createAsyncThunk(
     async (data, { rejectWithValue }) => {
         try {
             const response = await axios.post(
-                'http://localhost:3000/loginUser',
+                'https://linkswift-endb.onrender.com/loginUser',
                 data,
                 {
                     headers: {
