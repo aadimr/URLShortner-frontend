@@ -48,8 +48,9 @@ LinkSwift (A website to short your long URLs)
 -
 
 ## Data Structure
-1. ### User SingUp
-   ```
+
+1. ### User SingUp 
+```
 {
     fullName: "",
     emailId: "",
@@ -57,7 +58,6 @@ LinkSwift (A website to short your long URLs)
     confirmPassword: "",
 }
 ```
-
 2. ### User LogIn
 ```
 {
@@ -65,8 +65,7 @@ LinkSwift (A website to short your long URLs)
     password: "",
 }
 ```
-
-3. ### Short URL
+3. ### Shortened URL 
 ```
 {
     userId: "",
@@ -75,6 +74,3 @@ LinkSwift (A website to short your long URLs)
     shortUrl: "",
 }
 ```
-
-## APIs
--   This is a MERN stack project to check APIs please visit the backend repository (https://github.com/aadimr/URLShortner-backend/tree/master)
