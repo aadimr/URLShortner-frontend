@@ -49,7 +49,7 @@ function AllShortenedURL() {
                         </div>
                     </div>
                     <div className="w-full flex flex-col justify-center items-center mt-[60px] mb-[50px]" >
-                        <p className="text-[#6c6d71] w-5/6 mb-[.8rem] font-semibold">Get your all shortened URL</p>
+                        <p className="text-[#6c6d71] w-5/6 mb-[.8rem] font-semibold">Get your all shortened URLs</p>
                         {allShortedURLS.map((ele, index) => (
                             <div className="drop-shadow-lg bg-white min-h-20 w-5/6 mb-[18px] px-[11px] py-[10px] rounded-[3px] flex flex-col sm:flex-row items-center justify-between" key={index}>
                                 <div className='flex flex-col gap-[1rem]'>
