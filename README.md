@@ -74,3 +74,6 @@ LinkSwift (A website to short your long URLs)
     shortUrl: "",
 }
 ```
+## APIs
+
+This is a MERN stack project to get the APIs please visit backend repository (https://github.com/aadimr/URLShortner-backend/tree/master) 
