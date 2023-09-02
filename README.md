@@ -45,7 +45,7 @@ LinkSwift (A website to shortened your long URLs)
 - Aditya Shaw
 
 ## Deployment Link
-- (https://linkswift.vercel.app/)
+- https://linkswift.vercel.app
 
 ## Data Structure
 
